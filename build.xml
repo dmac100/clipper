@@ -1,0 +1,39 @@
+<project name="Project" default="compile" basedir=".">
+	<path id="classpath">
+		<pathelement path="build"/>
+	</path>
+
+	<target name="clean">
+		<delete dir="build"/>
+	</target>
+
+	<target name="compile">
+		<mkdir dir="build"/>
+		<javac srcdir="src" destdir="build" classpathref="classpath"/>
+		<copy todir="build">
+			<fileset dir="src" excludes="**/*.java"/>
+		</copy>
+	</target>
+
+	<target name="java" depends="compile">
+		<java classname="Main">
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar destfile="clipper.jar" basedir="build">
+		</jar>
+	</target>
+
+	<target name="junit" depends="compile">
+		<javac srcdir="test" destdir="build" classpathref="classpath"/>
+		<junit fork="true" logfailedtests="false">
+			<classpath refid="classpath"/>
+			<batchtest>
+				<fileset dir="test" includes="**/*Test.java"/>
+				<formatter type="plain" usefile="false"/>
+			</batchtest>
+		</junit>
+	</target>
+</project>
