@@ -11,7 +11,7 @@ Porting Notes
 -------------
 * Int128 was implemented using BigIntegers for now as Java doesn't support unsigned longs.
 * A polygon class was added instead of the using statement. `List<Polygon>` is used instead of Polygons.
-* Exceptions are throw as a RuntimeException, ClipperException.
+* Exceptions are thrown as a RuntimeException, ClipperException.
 * The more complex pass by reference calls were implemented using AtomicReferences.
 * The naming of public methods and parameters was changed to match the common Java style.
 
